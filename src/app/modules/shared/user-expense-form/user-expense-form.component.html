@@ -1,0 +1,34 @@
+<form [formGroup]="formGroup" class="form-inline custom-height">
+    <div class="form-group w-100 justify-content-between">
+        <label for="date" class="col-6">Fecha</label>
+        <input type="date" 
+               id="date"
+               class="form-control col-6"
+               formControlName="date">
+    </div>
+
+    <div class="form-group w-100 justify-content-between">
+        <label for="concept" class="col-6">Concepto *</label>
+        <input type="text"
+               id="concept"
+               class="form-control col-6"
+               formControlName="concept"
+               [ngClass]="{'is-invalid': formGroup.get('concept').invalid && formGroup.get('concept')?.touched,
+                           'is-valid': formGroup.get('concept').valid && formGroup.get('concept')?.touched}">
+    </div>
+
+    <div class="form-group w-100 justify-content-between">
+        <label for="amount" class="col-6">Importe *</label>
+        <input type="text"
+               id="amount"
+               class="form-control col-6"
+               formControlName="amount"
+               [ngClass]="{'is-invalid': formGroup.get('amount').invalid && formGroup.get('amount')?.touched,
+                           'is-valid': formGroup.get('amount').valid && formGroup.get('amount')?.touched}">
+    </div>
+
+    <div class="form-group justify-content-between offset-6 d-flex">
+            <button type="button" class="btn btn-success">Guardar</button>
+            <button type="button" class="btn btn-link">Cancelar</button>
+    </div>
+</form>
