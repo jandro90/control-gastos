@@ -1,13 +1,17 @@
-<div class="container mt-4">
+<div class="container mt-4 col-6">
   <h3 class="title">Mis Gastos</h3>
 
-  <div class="col-6 mt-4">
-    <app-user-expense-list [expenseList]="expenseList" (newExpenseListener)="newExpenseListener()"></app-user-expense-list>
+  <div class="mt-4">
+    <app-user-expense-list [expenseList]="expenseList"
+                           (newExpenseListener)="toggleForm()">
+    </app-user-expense-list>
   </div>
 
-  <div class="col-6 separator"
+  <div class="separator"
        *ngIf="showExpenseForm">
-    <app-user-expense-form></app-user-expense-form>
+    <app-user-expense-form (cancelExpenseListener)="toggleForm()"
+                           (saveExpenseListener)="saveExpense($event)">
+    </app-user-expense-form>
   </div>
   
 

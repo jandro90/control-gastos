@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IExpense } from 'src/app/interfaces/expense.interface';
 
 @Component({
   selector: 'app-user-expense-form',
@@ -7,19 +8,35 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./user-expense-form.component.scss']
 })
 export class UserExpenseFormComponent implements OnInit {
-  public formGroup: FormGroup;
+  @Output() saveExpenseListener: EventEmitter<IExpense> = new EventEmitter();
+  @Output() cancelExpenseListener: EventEmitter<any> = new EventEmitter();
 
-  constructor() {}
+  public formGroup: FormGroup;
 
   ngOnInit() {
     this.generateForm();
   }
-  
+
   private generateForm() {
     this.formGroup = new FormGroup({
       date: new FormControl(null),
       concept: new FormControl(null, Validators.required),
       amount: new FormControl(null, Validators.required)
     });
+  }
+
+  public onSaveExpense() {
+    if (this.formGroup.valid) {
+      const expenseValues = this.formGroup.getRawValue();
+      expenseValues.date ? expenseValues.date = new Date(expenseValues.date) : expenseValues.date = new Date();
+      this.saveExpenseListener.emit(expenseValues);
+      this.formGroup.reset();
+    } else {
+      this.formGroup.markAllAsTouched();
+    }
+  }
+
+  public onCancelExpense() {
+    this.cancelExpenseListener.emit();
   }
 }

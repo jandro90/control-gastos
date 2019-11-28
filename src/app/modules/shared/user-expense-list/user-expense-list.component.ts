@@ -1,12 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+import { IExpense } from 'src/app/interfaces/expense.interface';
 
 @Component({
   selector: 'app-user-expense-list',
   templateUrl: './user-expense-list.component.html',
   styleUrls: ['./user-expense-list.component.scss']
 })
+
 export class UserExpenseListComponent {
-  @Input() expenseList;
+  @Input() expenseList: IExpense[];
   @Output() newExpenseListener = new EventEmitter();
 
   public newExpense($event) {
