@@ -1,15 +1,16 @@
 <div class="mt-2">
-    <div *ngIf="expenseList && expenseList.length > 0; else noItemsTemplate">
-            <div class="d-flex justify-content-between"     
-                 *ngFor="let expense of expenseList">
-                <p>{{expense.date | date:'dd/MM'}}</p>
-                <p>{{expense.concept}}</p>
-                <p>{{expense.amount}}€</p>
-    </div>
+        <div *ngIf="expenseList && expenseList.length > 0; else noItemsTemplate">
+                <div class="d-flex justify-content-between" *ngFor="let expense of expenseList">
+                        <p>{{expense.date | date:'dd/MM'}}</p>
+                        <p>{{expense.concept}}</p>
+                        <p>{{expense.amount}}€</p>
+                </div>
+        </div>
 
-    <ng-template #noItemsTemplate>
-            <p>No existe ningun gasto en el Local Storage, pulsa sobre el botón "Nuevo Gasto" para añadir uno nuevo.</p>
-    </ng-template>
+        <ng-template #noItemsTemplate>
+                <p>No existe ningun gasto en el Local Storage, pulsa sobre el botón "Nuevo Gasto" para añadir uno nuevo.
+                </p>
+        </ng-template>
 
-    <button class="btn btn-info float-right" (click)="newExpense()">Nuevo Gasto</button>
+        <button class="btn btn-info float-right" (click)="newExpense()">Nuevo Gasto</button>
 </div>

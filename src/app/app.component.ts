@@ -20,13 +20,11 @@ export class AppComponent implements OnInit{
 
   private setExpenseList() {
     const expenseList = JSON.parse(this.storageService.get('expenseList'));
+    expenseList ? this.shortExpenseList(expenseList) : this.expenseList = [];
+  }
 
-    if (expenseList && expenseList.length > 0) {
-      const shortExpenseList =  expenseList.sort((a: any, b: any) =>  new Date(a.date).getTime() - new Date(b.date).getTime());
-      this.expenseList = shortExpenseList;
-    } else {
-      this.expenseList = [];
-    }
+  private shortExpenseList(expenseList: IExpense[]) {
+    this.expenseList = expenseList.sort((a: any, b: any) =>  new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
   public toggleForm() {
@@ -34,8 +32,9 @@ export class AppComponent implements OnInit{
   }
 
   public saveExpense(expense: IExpense) {
-    this.expenseList.push(expense);
+    const currentExpenseList = [...this.expenseList];
+    currentExpenseList.push(expense);
+    this.shortExpenseList(currentExpenseList);
     this.storageService.save('expenseList', JSON.stringify(this.expenseList));
   }
-
 }

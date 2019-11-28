@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup" class="form-inline custom-height">
-    <div class="form-group w-100 justify-content-between">
+    <div class="form-group w-100 justify-content-between row">
         <label for="date" class="col-6">Fecha</label>
         <input type="date" 
                id="date"
@@ -7,7 +7,7 @@
                formControlName="date">
     </div>
 
-    <div class="form-group w-100 justify-content-between">
+    <div class="form-group w-100 justify-content-between row">
         <label for="concept" class="col-6">Concepto *</label>
         <input type="text"
                id="concept"
@@ -17,7 +17,7 @@
                            'is-valid': formGroup.get('concept').valid && formGroup.get('concept')?.touched}">
     </div>
 
-    <div class="form-group w-100 justify-content-between">
+    <div class="form-group w-100 justify-content-between row">
         <label for="amount" class="col-6">Importe *</label>
         <input type="text"
                id="amount"
@@ -27,8 +27,10 @@
                            'is-valid': formGroup.get('amount').valid && formGroup.get('amount')?.touched}">
     </div>
 
-    <div class="form-group justify-content-between offset-6 d-flex">
-            <button type="button" class="btn btn-success" (click)="onSaveExpense()">Guardar</button>
-            <button type="button" class="btn btn-link" (click)="onCancelExpense()">Cancelar</button>
+    <div class="orm-group w-100 justify-content-between row">
+        <div class="offset-6 col-6 d-flex p-0">
+                <button type="button" class="btn btn-success" (click)="onSaveExpense()">Guardar</button>
+                <button type="button" class="btn btn-link" (click)="onCancelExpense()">Cancelar</button>
+        </div>
     </div>
 </form>
