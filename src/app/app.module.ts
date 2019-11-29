@@ -13,7 +13,6 @@ import { StorageService } from './storage.service';
   declarations: [
     AppComponent
   ],
-  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
